@@ -1,42 +1,118 @@
-import { Mail, Phone, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
+import React from 'react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary text-white pt-16 pb-8 px-10">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-        <div>
-          <img src="/logo-satek.png" alt="Logo" className="h-12 mb-4" />
-          <p className="text-gray-400 text-sm">Surya Agung adalah perusahaan manufaktur dan pengembangan mesin industri yang efisien dan tahan lama.</p>
-          <div className="flex gap-4 mt-4 text-primary">
-             <Facebook size={20} /> <Instagram size={20} /> <Twitter size={20} />
-          </div>
-        </div>
+    <footer className="bg-[#0B0F14] pt-20 pb-8 px-10 border-t border-gray-800">
+      <div className="max-w-7xl mx-auto">
         
-        <div>
-          <h4 className="font-bold mb-4">Navigasi</h4>
-          <ul className="text-gray-400 space-y-2 text-sm">
-            <li>Home</li><li>About Us</li><li>Products</li><li>Projects</li>
-          </ul>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          
+          {/* 1: Logo & Deskripsi */}
+          <div>
+            <img 
+              src="/assets/logo2.png" 
+              alt="Satek Surya Agung Teknik" 
+              className="h-21 object-contain mb-6" 
+            />
+            <p className="text-gray-400 text-sm leading-relaxed mb-8 pr-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+            </p>
+
+            <div className="flex items-center gap-5">
+              
+              {/* 1. Custom SVG Instagram */}
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+              </a>
+
+              {/* 2. Custom SVG Facebook */}
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+
+              {/* 3. Custom SVG TikTok */}
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+          {/* 2: Navigasi */}
+          <div>
+            <h4 className="text-white font-bold text-lg mb-6">Navigasi</h4>
+            <ul className="space-y-4">
+              {['Home', 'About Us', 'Products', 'Projects', 'Contact'].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-gray-400 hover:text-[#38B39C] text-sm transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 3: Layanan */}
+          <div>
+            <h4 className="text-white font-bold text-lg mb-6">Layanan</h4>
+            <ul className="space-y-4">
+              {[
+                'Pembuatan Mesin Custom', 
+                'Perakitan Mesin Industri', 
+                'Maintenance & Perbaikan', 
+                'Modifikasi Mesin', 
+                'Konsultasi Engineering'
+              ].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-gray-400 hover:text-[#38B39C] text-sm transition-colors">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 4: Kontak */}
+          <div>
+            <h4 className="text-white font-bold text-lg mb-6">Kontak</h4>
+            <ul className="space-y-5">
+              <li className="flex items-start gap-4">
+                <MapPin size={20} className="text-[#38B39C] flex-shrink-0 mt-0.5" />
+                <span className="text-gray-400 text-sm leading-relaxed">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                </span>
+              </li>
+              <li className="flex items-center gap-4">
+                <Phone size={20} className="text-[#38B39C] flex-shrink-0" />
+                <span className="text-gray-400 text-sm">
+                  +62 8123 4567 891
+                </span>
+              </li>
+              <li className="flex items-center gap-4">
+                <Mail size={20} className="text-[#38B39C] flex-shrink-0" />
+                <span className="text-gray-400 text-sm">
+                  suryaagung@gmail.com
+                </span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div className="border-t border-gray-800 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            © 2026 Surya Agung. All Rights Reserved.
+          </p>
         </div>
 
-        <div>
-          <h4 className="font-bold mb-4">Layanan</h4>
-          <ul className="text-gray-400 space-y-2 text-sm">
-            <li>Pembuatan Mesin Custom</li><li>Perakitan Mesin</li><li>Maintenance</li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold mb-4">Kontak</h4>
-          <ul className="text-gray-400 space-y-3 text-sm">
-            <li className="flex gap-2"><MapPin size={18} className="text-primary" /> Jalan Aria Cikondang, Cianjur</li>
-            <li className="flex gap-2"><Phone size={18} className="text-primary" /> +62 8123 4567 891</li>
-            <li className="flex gap-2"><Mail size={18} className="text-primary" /> suryaagung@gmail.com</li>
-          </ul>
-        </div>
-      </div>
-      <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-xs">
-        © 2026 Surya Agung. All Rights Reserved.
       </div>
     </footer>
   );

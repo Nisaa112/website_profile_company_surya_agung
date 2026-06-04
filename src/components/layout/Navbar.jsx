@@ -1,23 +1,73 @@
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const menuItems = [
+    { name: 'Home', link: '/' },
+    { name: 'About Us', link: '/about' },
+    { name: 'Products', link: '#' },
+    { name: 'Projects', link: '#' },
+    { name: 'Contact', link: '#' },
+  ];
+
   return (
-    <nav className="fixed w-full z-50 bg-black/20 backdrop-blur-sm text-white py-4 px-10 flex justify-between items-center">
-      <div className="flex items-center gap-2">
-        <img src="/logo-satek.png" alt="Satek Logo" className="h-10" />
+    <nav 
+      className={`fixed top-0 left-0 z-50 w-full flex items-center justify-between px-10 py-4 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-[#0B0F14]/80 backdrop-blur-md shadow-sm border-b border-gray-800' 
+          : 'bg-[#0B0F14] border-b border-transparent' 
+      }`}
+    >
+     
+      <div className="flex items-center cursor-pointer ml-9">
+        <img
+          src="/assets/logo.png"
+          alt="Satek Logo"
+          className="h-20 object-contain"
+        />
       </div>
-      
-      <ul className="hidden md:flex gap-8 font-medium">
-        <li><Link to="/" className="text-primary border-b-2 border-primary">Home</Link></li>
-        <li><Link to="/about" className="hover:text-primary transition">About Us</Link></li>
-        <li><Link to="/products" className="hover:text-primary transition">Products</Link></li>
-        <li><Link to="/projects" className="hover:text-primary transition">Projects</Link></li>
-        <li><Link to="/contact" className="hover:text-primary transition">Contact</Link></li>
+
+      <ul className="flex items-center space-x-10">
+        {menuItems.map((item) => (
+          <li key={item.name}>
+            <Link
+              to={item.link}
+              className={`text-sm font-medium transition-colors duration-200 ${
+                location.pathname === item.link
+                  ? 'text-[#38B39C]'
+                  : 'text-white hover:text-[#38B39C]'
+              }`}
+            >
+              {item.name}
+            </Link>
+          </li>
+        ))}
       </ul>
 
-      <button className="bg-primary hover:bg-opacity-90 px-6 py-2 rounded text-white font-bold transition">
-        KONSULTASI
-      </button>
+      <div>
+        <button className="bg-[#38B39C] hover:bg-[#2d917e] text-white text-xs font-bold tracking-wide py-2.5 px-10 rounded-sm transition-colors duration-200">
+          KONSULTASI
+        </button>
+      </div>
+
     </nav>
   );
 };
